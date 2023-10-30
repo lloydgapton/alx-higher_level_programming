@@ -1,28 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
+
 /**
- * check_cycle - check for cyclic linked list
- * @list: linked list
- * Return: 1 if true, 0 if false
+ * check_cycle - counts cycle
+ * @list: input
+ * Return: 0 if ok and 1 if not
  */
+
 int check_cycle(listint_t *list)
 {
-	listint_t *current = list;
 
-	if (current->next != NULL)
+	listint_t *current;
+
+	if (list)
 	{
-		current = current->next;
-	}
-	else
-	{
+		while (list != NULL)
+		{
+			current = list;
+			list = list->next;
+			if (current <= list)
+				return (1);
+		}
 		return (0);
 	}
-	while (current != list)
-	{
-		if (current->next == NULL)
-		{
-			return (0);
-		}
-		current = current->next;
-	}
-	return (1);
+	return (0);
+
 }
