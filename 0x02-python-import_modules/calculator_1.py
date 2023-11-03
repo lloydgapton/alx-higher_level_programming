@@ -23,7 +23,6 @@ def sub(a, b):
 
 def mul(a, b):
     """My multiplaiucation function
-
     Args:
 
     a: first integer
