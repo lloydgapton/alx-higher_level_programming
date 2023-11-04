@@ -1,15 +1,13 @@
 #!/usr/bin/python3
-
 if __name__ == "__main__":
-    """add infinite number on cLD arg"""
     import sys
-
-    argv = sys.argv
-    b = len(argv) - 1
-    sum = 0
-    if b == 0:
-        print(sum)
+    if len(sys.argv) == 1:
+        print(0)
+    elif len(sys.argv) == 2:
+        print(sys.argv[1])
     else:
-        for i in range(1, len(argv));
-        sum += int(argv[i])
+        sum = 0
+        for i in range(1, len(sys.argv)):
+            a = int(sys.argv[i])
+            sum = sum + a
         print(sum)
