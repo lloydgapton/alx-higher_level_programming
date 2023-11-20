@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 def safe_print_division(a, b):
-    """safe print list integers
+    """safe print division
 
     Args:
-        my_list: the list
-        x: the number of element to print
+        a: the dividend
+        b: the divisor
 
     Return:
-        the real number of integer printed
+    the quotient or the error
     """
     try:
         result = a / b
@@ -16,4 +16,4 @@ def safe_print_division(a, b):
 
     finally:
         print("Inside result: {}".format(result))
-        return(result)
+        return (result)
