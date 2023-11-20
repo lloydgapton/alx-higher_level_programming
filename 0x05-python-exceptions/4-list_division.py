@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def list_division(my_list_1, my_list_2, list_length):
-    """list division  length
+    """list division length
 
     Args:
         my_list_1: the first list
