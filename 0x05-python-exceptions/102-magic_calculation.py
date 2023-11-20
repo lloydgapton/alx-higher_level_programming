@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def magic_calculator(a, b):
+def magic_calculation(a, b):
     """rewrite bytecode back into python"""
     result = 0
     for i in range(1, 3):
