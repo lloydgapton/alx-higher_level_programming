@@ -1,14 +1,23 @@
 #!/usr/bin/python3
-class Square:
+"""Documentation for a square class"""
+
+
+class Square():
+    """Square class"""
+
     def __init__(self, size=0):
-        """
-        Initializes a square instance with an optional size
+        """Sets the size of the square on instantation
+           Throws an error if the size called with it is not an integer
         Args:
-        -size:The size of the square(private instance attribute)
-            Default value is 0
+            size (int, optional): The size of the square object
+        Raises:
+            TypeError: When the value passed in is not an integer
+            ValueError: When the value passed in is less than 0
         """
+
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        if size < 0:
+        elif size < 0:
             raise ValueError("size must be >= 0")
-        self.__size = size
+        else:
+            self.__size = size
