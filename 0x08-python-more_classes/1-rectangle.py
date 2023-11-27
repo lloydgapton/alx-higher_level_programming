@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""A module for the rectangle class"""
+
+
 class Rectangle:
     """This class is for manage a recxtangle"""
 
@@ -12,7 +15,7 @@ class Rectangle:
     def width(self):
         """Put width"""
 
-        return self.__width
+        return (self.__width)
 
     @width.setter
     def width(self, value):
