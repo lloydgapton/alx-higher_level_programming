@@ -104,7 +104,7 @@ class Rectangle:
                 rectangle.append(str(self.print_symbol))
             if i is not self.__height - 1:
                 rectangle.append('\n')
-        return''.join(rectangle)
+        return("".join(rectangle))
 
     def __repr__(self):
         """Creates a string that works with the eval() function"""
