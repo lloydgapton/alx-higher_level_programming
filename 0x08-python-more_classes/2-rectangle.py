@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""A module for a rectangle class"""
+
+
 class Rectangle:
     """Init class width set 0 and height set 0"""
     def __init__(self, width=0, height=0):
@@ -9,7 +12,7 @@ class Rectangle:
     @property
     def width(self):
         """ Width Getter"""
-        return self.__width
+        return (self.__width)
 
     @width.setter
     def width(self, value):
@@ -23,7 +26,7 @@ class Rectangle:
     @property
     def height(self):
         """Height Getter"""
-        return self.__height
+        return (self.__height)
 
     @height.setter
     def height(self, value):
