@@ -1,27 +1,30 @@
+
 #!/usr/bin/python3
-"""Function that splits a text according to ., ?, and :"""
+"""Defines a text-indentation function."""
 
 
 def text_indentation(text):
-    """This function splits a string of text according to punctuation
-    Args:
-        text (str): the string of text to split
-    Raises:
-        TypeError: if the text called with the program is not a string
-    """
+    """Print text with two new lines after each '.', '?', and ':'.
 
-    if type(text) != str:
+    Args:
+        text (string): The text to print.
+    Raises:
+        TypeError: If text is not a string.
+    """
+    if not isinstance(text, str):
         raise TypeError("text must be a string")
-    i = 0
-    text = text.strip()
-    while i < len(text):
-        print(text[i], end='')
-        if text[i] == '.' or text[i] == '?' or text[i] == ':':
-            print('\n')
-            if i == len(text) - 1:
-                break
-            if text[i + 1] == ' ':
-                i += 1
-            while text[i] == ' ' and text[i + 1] == ' ' and i + 1 < len(text):
-                i += 1
-        i += 1
+
+    c = 0
+    while c < len(text) and text[c] == ' ':
+        c += 1
+
+    while c < len(text):
+        print(text[c], end="")
+        if text[c] == "\n" or text[c] in ".?:":
+            if text[c] in ".?:":
+                print("\n")
+            c += 1
+            while c < len(text) and text[c] == ' ':
+                c += 1
+            continue
+        c += 1
