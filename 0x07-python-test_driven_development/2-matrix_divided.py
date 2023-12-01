@@ -1,49 +1,56 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu May 21 17:43:34 2020
+
+@author: Robinson Montes
+"""
+
+
 def matrix_divided(matrix, div):
-    """''def matrix_divided(matrix, div):'' divide each
-    elelemt of the matrix is divided by div and
-    return a new matrix with the results with a 2
-    precision numbers. If div not is a number raise
-    TypeError or ZeroDivisionError if div is 0:
-    If matrix not is a list of lists return TypeError.
-    If some sub-list aren't a list return TypeError.
-    If some element of some sub-list aren't integer
-    or float number return TypeError."""
+    """
+    divides all elements of a matrix
 
-    if type(div) not in [int, float]:
+    Args:
+        matrix (list of list): list of list of int or float
+        div (int/float): integer or float to divide for
+
+    Raises:
+        TypeError: Exception if elements in matrix and div are not integer or
+            float; Each row in the matrix have the same size
+        ZeroDivisionError: Exception if div is 0
+
+    Return:
+        The result to divide matrix by div
+    """
+
+    if type(div) not in [int, float] or div != div or\
+            abs(div) > 1.7976931348623158e+308:
         raise TypeError("div must be a number")
-    elif div is 0:
+        return matrix
+    elif div == 0:
         raise ZeroDivisionError("division by zero")
+        return matrix
 
-    if type(matrix) is not list or len(matrix) is 0:
-        raise TypeError(
-            "matrix must be a matrix (list of lists) of \
-        integers/floats"
-        )
+    if type(matrix) is list:
+        new_matrix = [x[:] for x in matrix]
+        for i in range(len(matrix)):
+            if i <= len(matrix) - 2 and len(matrix[i]) != len(matrix[i + 1]):
+                raise TypeError("Each row of the matrix must have the same" +
+                                " size")
+                return matrix
+            for j in range(len(matrix[i])):
+                if type(matrix[i][j]) not in [int, float] or\
+                        matrix[i][j] != matrix[i][j] or\
+                        abs(matrix[i][j]) > 1.7976931348623158e+308:
+                    raise TypeError("matrix must be a matrix (list of lists)" +
+                                    " of integers/floats")
+                    return matrix
+                else:
+                    new_matrix[i][j] = round(matrix[i][j] / div, 2)
     else:
+        raise TypeError("matrix must be a matrix (list of lists)" +
+                        " of integers/floats")
+        return matrix
 
-        for i in matrix:
-            if type(i) is not list:
-                raise TypeError(
-                    "matrix must be a matrix (list of lists) of \
-                integers/floats"
-                )
-            else:
-                for j in i:
-                    if type(j) not in [int, float]:
-                        raise TypeError(
-                            "matrix must be a matrix (list of lists) \
-                        of integers/floats"
-                        )
-
-        r_len = len(matrix[0])
-        for n in range(len(matrix)):
-            if len(matrix[n]) != r_len:
-                raise TypeError(
-                    "Each row of the matrix must have \
-                the same size"
-                )
-
-        New_matrix = [[round((el / div), 2) for el in i] for i in matrix]
-
-    return New_matrix
+    return new_matrix
