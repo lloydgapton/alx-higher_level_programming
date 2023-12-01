@@ -1,58 +1,99 @@
-===========================
-Usage of 100-matrix_mul.py
-==========================
+========================================================================
+'Test for 101-lazy_matrix_mul module'
+========================================================================
+'Funtion to test:   lazy_matrix_mul(m_a, m_b)'
+========================================================================
 
-``def matrix_mul(m_a, m_b)`` is to find the product of
-two matrices using NumPy
+>>> lazy_matrix_mul = __import__("101-lazy_matrix_mul").lazy_matrix_mul
 
-======
-Usage
-======
+'module docstring'
+>>> m = __import__("101-lazy_matrix_mul").__doc__
+>>> len(m) > 1
+True
 
-::
+'function docstring'
+>>> f = __import__("101-lazy_matrix_mul").lazy_matrix_mul.__doc__
+>>> len(f) > 1
+True
 
-    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
-    >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
-    [[ 7 10]
-     [15 22]]
+'empty args'
+>>> lazy_matrix_mul()
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
 
-::
+'only one arg'
+>>> lazy_matrix_mul([[2, 7]])
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
 
-    >>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
-    [[13 16]]
+'more than 2 args'
+>>> lazy_matrix_mul([[1, 2]], [[8]], [[12]])
+Traceback (most recent call last):
+...
+TypeError: lazy_matrix_mul() takes 2 positional arguments but 3 were given
 
-=========
-Bad Usage
-=========
+'Matrix of integers'
+>>> print(lazy_matrix_mul([[3, 4], [6, 5]], [[8], [7]]))
+[[52]
+ [83]]
 
-if nuumber of columns of Matrix A does not equal to number of
-rows of Matrix B;the matric can't be multiplied
+'Matrix of float'
+>>> print(lazy_matrix_mul([[3.6, -4.5], [-6, 5-3]], [[-0.8], [1.7]]))
+[[-10.53]
+ [  8.2 ]]
 
-::
+'m_a is not a list of integers or floats'
+>>> lazy_matrix_mul(True, [[8, 7]])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
 
-    >>> print(lazy_matrix_mul([[3, 4], [5, 6]], [[1, 2]]))
-    Traceback (most recent call last):
-    ValueError: shapes (2,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0)
+'m_b is not a list of integers or floats'
+>>> lazy_matrix_mul([[3, 4], [6, 5]], 3)
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
 
-if matrix contain string
+'m_a is not a list of integers or floats'
+>>> lazy_matrix_mul((2, 5, 6), [[8, 7]])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 3)
 
-::
+'m_b is not a list of integers or floats'
+>>> lazy_matrix_mul([[3, 4], [6, 5]], "Meco")
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
 
-    >>> print(lazy_matrix_mul([[1, 2], [3, 'q']], [[1, 2], [3, 4]]))
-    Traceback (most recent call last):
-    TypeError: invalid data type for einsum
+'m_a is not a list of lists of integers'
+>>> lazy_matrix_mul([3, 4, 6, 5], [[8, 7]])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 4)
 
-if the matrix is not a list of list
+'m_b is not a list of lists of integers'
+>>> lazy_matrix_mul([[3, 4.3, 6.5, 5]], ["Meco", 7])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 4)
 
-::
+'m_a is an empty list'
+>>> lazy_matrix_mul([], ["Meco", 7])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 0)
 
-    >>> print(lazy_matrix_mul("mus", "taP"))
-    Traceback (most recent call last):
-    ValueError: Scalar operands are not allowed, use '*' instead
+'m_b is an empty list of lists'
+>>> lazy_matrix_mul([[3, 4.3, 6.5, 5]], [[]])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 4)
 
-Test for empty list
-
-::
-
-    >>> print(lazy_matrix_mul([[]],[]))
-    [0.]
+'m_a is a list of lists but not a matrix'
+>>> lazy_matrix_mul([[3, -4.3], [-6.5, 5, -7]], [[4, 7]])
+Traceback (most recent call last):
+...
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different 

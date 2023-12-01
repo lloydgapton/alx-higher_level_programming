@@ -1,58 +1,75 @@
-===========================
-Usage of 100-matrix_mul.py
-==========================
+========================================================================
+'Test for 100-matrix_mul module'
+========================================================================
+'Funtion to test:   matrix_mul(m_a, m_b)'
+========================================================================
 
-``def matrix_mul(m_a, m_b)`` is to find he product of
-two matrices
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
 
-======
-Usage
-======
+'Matrix of integers'
+>>> matrix_mul([[3, 4], [6, 5]], [[8], [7]])
+[[52], [83]]
 
-::
+'Matrix of float'
+>>> matrix_mul([[3.6, -4.5], [-6, 5.3]], [[-0.8], [1.7]])
+[[-10.53], [13.81]]
 
-    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
-    >>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
-    [[7, 10], [15, 22]]
+'m_a is not a list of integers or floats'
+>>> matrix_mul(True, [[8, 7]])
+Traceback (most recent call last):
+...
+TypeError: m_a must be a list
 
-::
+'m_b is not a list of integers or floats'
+>>> matrix_mul([[3, 4], [6, 5]], 3)
+Traceback (most recent call last):
+...
+TypeError: m_b must be a list
 
-    >>> print(matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
-    [[13, 16]]
+'m_a is not a list of integers or floats'
+>>> matrix_mul((2, 5, 6), [[8, 7]])
+Traceback (most recent call last):
+...
+TypeError: m_a must be a list
 
-=========
-Bad Usage
-=========
+'m_b is not a list of integers or floats'
+>>> matrix_mul([[3, 4], [6, 5]], "Meco")
+Traceback (most recent call last):
+...
+TypeError: m_b must be a list
 
-if nuumber of columns of Matrix A does not equal to number of
-rows of Matrix B;the matric can't be multiplied
+'m_a is not a list of lists of integers'
+>>> matrix_mul([3, 4, 6, 5], [[8, 7]])
+Traceback (most recent call last):
+...
+TypeError: m_a must be a list of lists
 
-::
+'m_b is not a list of lists of integers'
+>>> matrix_mul([[3, 4.3, 6.5, 5]], ["Meco", 7])
+Traceback (most recent call last):
+...
+TypeError: m_b must be a list of lists
 
-    >>> print(matrix_mul([[3, 4], [5, 6]], [[1, 2]]))
-    Traceback (most recent call last):
-    ValueError: m_a and m_b can't be multiplied
+'m_a is an empty list'
+>>> matrix_mul([], ["Meco", 7])
+Traceback (most recent call last):
+...
+ValueError: m_a can't be empty
 
-if matrix contain string
+'m_b is an empty list of lists'
+>>> matrix_mul([[3, 4.3, 6.5, 5]], [[]])
+Traceback (most recent call last):
+...
+ValueError: m_b can't be empty
 
-::
+'m_a is a list of lists but not a matrix'
+>>> matrix_mul([[3, -4.3], [-6.5, 5, -7]], [[4, 7]])
+Traceback (most recent call last):
+...
+TypeError: each row of m_a must be of the same size
 
-    >>> print(matrix_mul([[1, 2], [3, 'q']], [[1, 2], [3, 4]]))
-    Traceback (most recent call last):
-    TypeError: m_a should contain only integers or floats
-
-if the matrix is not a list of list
-
-::
-
-    >>> print(matrix_mul("mus", "taP"))
-    Traceback (most recent call last):
-    TypeError: m_a must be a list
-
-Test for empty list
-
-::
-
-    >>> print(matrix_mul([[]],[]))
-    Traceback (most recent call last):
-    ValueError: m_a can't be empty
+'m_b is not a list of lists of integers'
+>>> matrix_mul([[3, 4.3], [6.5, 5]], [[6, 7], [3, "Meco"]])
+Traceback (most recent call last):
+...
+TypeError: m_b should contain only integers or floats
