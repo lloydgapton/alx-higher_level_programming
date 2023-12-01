@@ -96,4 +96,4 @@ ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with
 >>> lazy_matrix_mul([[3, -4.3], [-6.5, 5, -7]], [[4, 7]])
 Traceback (most recent call last):
 ...
-ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different 
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2) 
