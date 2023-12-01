@@ -1,16 +1,21 @@
 #!/usr/bin/python3
-"""multiplication of two matrices using
-numpy"""
-import numpy as np
+# -*- coding: utf-8 -*-
+"""
+multiplictation of two matrices using numpy
+"""
+from numpy import matmul
 
 
 def lazy_matrix_mul(m_a, m_b):
-    """multiply two matrices using numpy
+    """
+    Multiply two matrix
 
     Args:
-        m_a: the list of list
-        m_b: the list of list
+        m_a (list): First matrix
+        m_b (list): second matrix
+
     Returns:
-        the new matrix
+        The result of multiply m_a by m_b
+
     """
-    return (np.matmul(m_a, m_b))
+    return matmul(m_a, m_b)
