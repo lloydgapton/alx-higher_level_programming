@@ -1,67 +1,81 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 """
-multiplication of two matrices
+Created on Thu May 21 17:43:34 2020
+
+@author: Robinson Montes
 """
+
+
+def check_matrix(matrix, name):
+    """
+    Check if list of list is a matrix of integer/float
+
+    Args:
+        matrix (list of list): list of list of int or float
+        name (str): matrix name to test
+
+    Raises:
+        TypeError: Exception if elements in matrix and div are not integer or
+            float; Each row in the matrix have the same size
+
+    Return:
+        matrix if input is a matrix
+
+    """
+    if type(matrix) is list:
+        if len(matrix) == 0:
+            raise ValueError(name + " can't be empty")
+        for row in matrix:
+            if type(row) is list:
+                if len(row) == 0:
+                    raise ValueError(name + " can't be empty")
+                else:
+                    for ele in row:
+                        if type(ele) not in [int, float]:
+                            raise TypeError(name + " should contain only" +
+                                            " integers or floats")
+            elif type(row) is not list:
+                raise TypeError(name + " must be a list of lists")
+            elif len(row) == 0:
+                raise ValueError(name + " can't be empty")
+            if len(row) != len(matrix[0]):
+                raise TypeError("each row of " + name + " must be of the" +
+                                " same size")
+    else:
+        raise TypeError(name + " must be a list")
 
 
 def matrix_mul(m_a, m_b):
-    """multiplication of two matrices
+    """
+    Multiply two matrix
 
     Args:
-        m_a : the first matrix(list of list)
-        m_b : the second matrix(list of list)
+        m_a (list): First matrix
+        m_b (list): second matrix
 
-    Raises:
-        TypeError: if matrix...
-        ValueError: if matrix...
+    Returns:
+        The result of multiply m_a by m_b
 
-    Return:
-        the new matrix
     """
-    if not isinstance(m_a, list):
-        raise TypeError('m_a must be a list')
-    if not isinstance(m_b, list):
-        raise TypeError('m_b must be a list')
-    if not all((isinstance(i, list) for i in m_a)):
-        raise TypeError('m_a must be a list of lists')
-    if not all((isinstance(i, list) for i in m_b)):
-        raise TypeError("m_b must be a list of lists")
-    if m_a == [] or m_a == [[]]:
-        raise ValueError("m_a can't be empty")
-    if m_b == [] or m_b == [[]]:
-        raise ValueError("m_b can't be empty")
-    if not all((isinstance(j, int) or
-                isinstance(j, float))
-               for j in [a for i in m_a for a in i]):
-        raise TypeError("m_a should contain only integers or floats")
-    if not all((isinstance(j, int) or
-                isinstance(j, float))
-               for j in [a for i in m_a for a in i]):
-        raise TypeError("m_b should contain only integers or floats")
-    if not all((len(a) == len(m_a[0])) for a in m_a):
-        raise TypeError("each row of m_a must be of the same size")
-    if not all((len(b) == len(m_b[0])) for b in m_b):
-        raise TypeError("each row of m_b must be of the same size")
-    c_len_a = len(m_a[0])
-    len_a = len(m_a)
-    c_len_b = len(m_b[0])
-    len_b = len(m_b)
-    if c_len_a != len_b:
-        raise ValueError("m_a and m_b can't be multiplied")
-    transpose_b = []
-    for i in range(c_len_b):
-        b_list = []
-        for j in range(len_b):
-            b_list.append(m_b[j][i])
-        transpose_b.append(b_list)
+    check_matrix(m_a, 'm_a')
+    check_matrix(m_b, 'm_b')
+    cols_a = len(m_a[0])
+    rows_b = len(m_b)
 
-    new_matrix = []
-    for a in m_a:
-        m_list = []
-        for b in transpose_b:
-            ans = 0
-            for k in range(len(transpose_b[0])):
-                ans += a[k] * b[k]
-            m_list.append(ans)
-        new_matrix.append(m_list)
-    return (new_matrix)
+    if cols_a == rows_b:
+        rows = len(m_a)
+        cols = len(m_b[0])
+        result = []
+        for i in range(rows):
+            fil = []
+            for j in range(cols):
+                fil.append(0)
+            result.append(fil)
+        for i in range(len(m_a)):
+            for j in range(len(m_b[0])):
+                for k in range(len(m_b)):
+                    result[i][j] += m_a[i][k] * m_b[k][j]
+        return result
+    else:
+        raise ValueError("m_a and m_b can't be multiplied")
