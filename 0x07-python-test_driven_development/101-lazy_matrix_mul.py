@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-multiplictation of two matrices using numpy
+Multiplication of two matrices using numpy
 """
 from numpy import matmul
 
