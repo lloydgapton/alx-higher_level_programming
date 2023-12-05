@@ -1,21 +1,9 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
-"""
-Add all arguments to a json file
-"""
+
 import json
 
 
 def save_to_json_file(my_obj, filename):
-    """
-    Save object to a file
-
-    Arguments:
-        my_obj (obj): The inputed object to convert in json format
-        filename (str): The name of the output file
-
-    Return:
-        A file with a text in jason format
-    """
-    with open(filename, 'w', encoding='utf-8') as file:
-        return file.write(json.dumps(my_obj))
+    """function that writes an Object to a text file, using a JSON"""
+    with open(filename, "w") as f:
+        json.dump(my_obj, f)
