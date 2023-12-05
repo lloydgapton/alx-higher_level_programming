@@ -2,14 +2,19 @@
 """add all argumenst to a json file"""
 
 
-if __name__ == "__main__":
-    import sys
+import json
 
-    loader = __import__('6-load_from_json_file').load_from_json_file
-    saver = __import__('5-save_to_json_file').save_to_json_file
-    try:
-        items = loader('add_item.json')
-    except FileNotFoundError:
-        items = []
-    items.extend(sys.argv[1:])
-    saver(items, 'add_item.json')
+
+def save_to_json_file(my_obj, filename):
+    """
+    Save object to a file
+
+    Arguments:
+        my_obj (obj): The inputed object to convert in json format
+        filename (str): The name of the output file
+
+    Return:
+        A file with a text in jason format
+    """
+    with open(filename, 'w', encoding='utf-8') as file:
+        return file.write(json.dumps(my_obj))
