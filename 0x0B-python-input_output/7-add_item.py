@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""add all argumenst to a json file"""
-
-
+# -*- coding: utf-8 -*-
+"""
+Add all arguments to a json file
+"""
 import json
 
 
