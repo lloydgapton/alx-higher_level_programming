@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-""" this is my Base.py file
-"""
+""" My base.py file"""
 import json
 
 
