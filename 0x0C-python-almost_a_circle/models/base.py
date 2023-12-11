@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-My base.py file
+Created on Fri Jun  5 15:43:09 2020
+
+@author: meco
 """
 import json
 
