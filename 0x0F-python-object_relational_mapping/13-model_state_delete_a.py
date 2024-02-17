@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """
-Created on Sat Aug  8 09:05:11 2020
-
-@author: Robinson Montes
+Delete filter elements
 """
 from model_state import Base, State
 from sqlalchemy.orm import sessionmaker
