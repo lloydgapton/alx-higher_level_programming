@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """
-Created on Sat Aug  8 09:05:11 2020
-
-@author: Robinson Montes
+A query with like
 """
 from model_state import Base, State
 from sqlalchemy.orm import sessionmaker
