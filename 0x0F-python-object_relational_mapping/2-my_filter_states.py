@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-"""
-Created on Sat Aug  8 09:05:11 2020
-
-@author: Robinson Montes
-"""
+"""Filter states by user input"""
 import MySQLdb
 import sys
 
