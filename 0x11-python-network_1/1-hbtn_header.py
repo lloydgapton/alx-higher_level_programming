@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ response header value """
+from urllib import request
+from sys import argv
 
-if __name__ == '__main__':
-    import urllib.request
-    import sys
+if __name__ == "__main__":
 
-    request = urllib.request.request(sys.argv[1])
-    with urllib.request.urlopen(request) as result:
-        print(dict(result.headers)['X-Request-Id'])
+    req = request.request(argv[1])
+    with request.urlopen(req) as response:
+        print(response.headers["X-request-Id"])
