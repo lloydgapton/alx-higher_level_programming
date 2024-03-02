@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-"""Sends a request to a given URL and displays the response
 """
-import sys
-import urllib.error
-import urllib.request
-if __name__ == "__main__":
-    url = sys.argv[1]
+Script that takes in a URL, sends a request to the URL and displays the body
+of the response(decoded in UTF-8)
+"""
+from urllib import request, parse, error
+from sys import argv
 
-    request = urllib.request.Request(url)
+if __name__ == "__main__":
+    res = request.Request(argv[1])
     try:
-        with urllib.request.urlopen(request) as response:
-            print(response.read().decode("ascii"))
-    except urllib.error.HTTPError as e:
-        print("Error code: {}".format(e.code))
+        with request.urlopen(res) as respons:
+            print(respons.read().decode("utf-8"))
+    except error.URLError as exception:
+        print("Error code: {}".format(exception.code))
