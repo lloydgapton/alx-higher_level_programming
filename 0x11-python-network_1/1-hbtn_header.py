@@ -7,4 +7,4 @@ if __name__ == '__main__':
 
     request = urllib.request.request(sys.argv[1])
     with urllib.request.urlopen(request) as result:
-        print(dict(result.headers)['X-request-Id])
+        print(dict(result.headers)['X-Request-Id'])
