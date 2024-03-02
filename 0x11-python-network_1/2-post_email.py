@@ -1,11 +1,17 @@
 #!/usr/bin/python3
-"""response heade value"""
+"""send a post requestwith mail"""
 
-if __name__ == '__main__':
-        import urllib.request
-            import sys
+if __name__ == "__main__":
+    import urllib.request
+    import urllib.parse
+    import sys
 
-                request = urllib.request.Request(sys.argv[1])
-                    with urllib.request.urlopen(request) as result:
-                                print(dict(result.headers)['X-Request-Id'])
+    lis = sys.argv
+    values = {}
+    values['email'] = lis[2]
+    data = urllib.parse.urlencode(values)
+    data = data.encode('ascii')
+    req = urllib.request.Request(lis[1], data)
+    with urllib.request.urlopen(req) as response:
+        print(response.read().decode('utf-8'))
 
