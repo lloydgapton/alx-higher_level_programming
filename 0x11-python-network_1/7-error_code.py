@@ -1,18 +1,16 @@
 #!/usr/bin/python3
-"""Sends a request to a given URL and displays the response body.
-
-Usage: ./7-error_code.py <URL>
-  - Handles HTTP errors.
 """
-import sys
+Script that takes in a URL, sends a request to the url and displays the body
+of the response
+"""
 import requests
-
+from sys import argv
 
 if __name__ == "__main__":
-    url = sys.argv[1]
-
-    r = requests.get(url)
-    if r.status_code >= 400:
-        print("Error code: {}".format(r.status_code))
-    else:
-        print(r.text)
+    try:
+        res = requests.get(argv[1])
+        res.raise_for_status()
+        print(res.text)
+    except requests.exceptions.HTTPError as error:
+        status_code = error.response.status_code
+        print("Error code: {}".format(status_code))
