@@ -1,24 +1,18 @@
 #!/usr/bin/python3
-"""
-Script that takes in a letter and sends a POST request to
-http://0.0.0.:5000/search_user with the letter as a  parameter
-"""
-import requests
-from sys import argv
+"""get json element"""
 
 if __name__ == "__main__":
-    url = "http://0.0.0.0:5000/search_user"
-    if len(argv) == 1:
-        print("No result")
-        quit()
-    letter = argv[1]
-    res = requests.post(url, data={"q": letter})
+    import requests
+    import sys
+
+    data = {}
+    data['q'] = '' if (len(sys.argv) == 1) else sys.argv[1]
+    r = requests.post('http://0.0.0.0:5000/search_user', data=data)
     try:
-        res_json = res.json()
-    except:
-        print("Not a valid JSON")
-    else:
-        if len(res_json) == 0:
-            print("No result")
+        c = r.json()
+        if (c == {}):
+            print('No result')
         else:
-            print("[{}] {}".format(res_json["id"], res_json["name"]))
+            print('[{}] {}'.format(c['id'], c['name']))
+    except ValueError:
+        print('Not a valid JSON')
